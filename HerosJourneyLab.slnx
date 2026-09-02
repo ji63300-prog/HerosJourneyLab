@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="HerosJourneyLab/HerosJourneyLab.vcxproj" Id="7b151e75-fefc-4863-9dab-8b23f527cdcc" />
+</Solution>

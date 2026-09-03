@@ -87,17 +87,17 @@ void quest(hero& h) {
 
     if (win == -1) {
 		h.setCrg(h.getCrg() - (rand() % 15) + 1);
-        cout << "Hero lost.\n";
+        cout << h.getName() << " failed on their quest.\n";
     }
 
     if (win == 1) {
         h.setCrg(h.getCrg() + (rand() % 10) + 1);
-        cout << "Hero won!\n";
+        cout << h.getName() << " won!\n";
     }
 
     if (win == 0) {
         h.setCrg(h.getCrg() - (rand() % 8) + 1);
-        cout << "Hero tied?\n";
+        cout << h.getName() << " tied? \n";
     }
 
 }
@@ -107,44 +107,58 @@ void quest(hero& h) {
 int main() {
     
     bool leave = false;
+    bool quit = false;
+    char ans;
     char prep;
+    string nam;
 
-    hero knight("Knight");
+    cout << "What is your hero's name? \n";
+    cin >> nam;
 
-    cout << "Hero's stats: \n";
+    hero knight(nam);
+
+    cout << knight.getName() << " stats: \n";
 	cout << "Strength: " << knight.getStr() << "\n";
     cout << "Courage: " << knight.getCrg() << "\n";
 
-    while (leave == false) {
-        cout << "Should hero hit the gym(g), go to therapy(t), or leave for the quest(q)? \n";
-        cin >> prep;
-        if (prep == 'g') {
-            knight.gym();
-			cout << "Hero's updated strength is now: " << knight.getStr() << "\n";
+    while (quit == false) {
+        while (leave == false) {
+            cout << "Should " << knight.getName() << " hit the gym(g), go to therapy(t), or leave for the quest(q)? \n";
+            cin >> prep;
+            if (prep == 'g') {
+                knight.gym();
+                cout << knight.getName() << "'s updated strength is now : " << knight.getStr() << "\n";
+            }
+            if (prep == 't') {
+                knight.therapy();
+                cout << knight.getName() << "'s updated courage is now: " << knight.getCrg() << "\n";
+            }
+            if (prep == 'q') {
+                cout << knight.getName() << "'s final stats:\n";
+                cout << "Strength: " << knight.getStr() << "\n";
+                cout << "Courage: " << knight.getCrg() << "\n";
+                leave = true;
+            }
         }
-        if (prep == 't') {
-            knight.therapy();
-            cout << "Hero's updated courage is now: " << knight.getCrg() << "\n";
+
+        //cout << "Knight went to the gym. \n";
+        //knight.gym();
+        //cout << "Knight went to therapy. \n";
+        //knight.therapy();
+        //cout << knight.getStr() << "\n";
+        //cout << knight.getCrg() << "\n";
+
+        quest(knight);
+
+        cout << knight.getName() << "'s new strength: " << knight.getStr() << "\n";
+        cout << knight.getName() << "'s new courage: " << knight.getCrg() << "\n";
+        cout << "Quit? (y/n): ";
+        cin >> ans;
+        if (ans == 'y') {
+            break;
         }
-        if (prep == 'q') {
-            cout << "Hero's final stats:\n";
-            cout << "Strength: " << knight.getStr() << "\n";
-            cout << "Courage: " << knight.getCrg() << "\n";
-            leave = true;
-        }
+		leave = false;
     }
-
-    //cout << "Knight went to the gym. \n";
-    //knight.gym();
-    //cout << "Knight went to therapy. \n";
-    //knight.therapy();
-    //cout << knight.getStr() << "\n";
-    //cout << knight.getCrg() << "\n";
-
-    quest(knight);
-
-    cout << "Hero's new strength: " << knight.getStr() << "\n";
-    cout << "Hero's new courage: " << knight.getCrg() << "\n";
 
     return 0;
 }

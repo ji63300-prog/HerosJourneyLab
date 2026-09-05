@@ -43,6 +43,7 @@ public:
     void gym() {
         str += (rand() % 10) + 1;
     }
+    //"increases strength in proportion to time is accomplised by the number of times you choose to go to the gym
 
     void therapy() {
         crg += (rand() % 10) + 1;
